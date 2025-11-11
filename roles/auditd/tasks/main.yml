@@ -1,0 +1,27 @@
+- name: Install auditd
+  apt:
+    name: auditd
+    state: present
+    update_cache: yes
+
+- name: Copy auditd configuration
+  copy:
+    src: audit.conf
+    dest: /etc/audit/auditd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy custom audit rules
+  copy:
+    src: audit.rules
+    dest: /etc/audit/rules.d/audit.rules
+    owner: root
+    group: root
+    mode: '0640'
+
+- name: Ensure auditd service is enabled and started
+  service:
+    name: auditd
+    state: started
+    enabled: yes

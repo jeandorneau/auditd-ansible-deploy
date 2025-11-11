@@ -1,0 +1,6 @@
+- name: Deploy and configure Auditd
+  hosts: localhost
+  become: yes
+
+  roles:
+    - auditd

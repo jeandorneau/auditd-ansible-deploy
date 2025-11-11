@@ -1,0 +1,7 @@
+-w /etc/passwd -p wa -k passwd_changes
+
+# Watch for sudo usage
+-w /usr/bin/sudo -p x -k sudo_activity
+
+# Record all actions by root
+-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k root_actions

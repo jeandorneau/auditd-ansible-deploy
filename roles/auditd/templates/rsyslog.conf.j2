@@ -1,0 +1,10 @@
+# rsyslog configuration for audit logs forwarding
+
+module(load="imuxsock")
+module(load="imklog")
+
+# Save audit logs
+if ($programname == "auditd") then /var/log/audit/audit.log
+& stop
+
+*.*;auth,authpriv.none          -/var/log/syslog
